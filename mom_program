@@ -1,0 +1,11 @@
+#include <stdio.h>
+void main()
+{
+int love, you;
+love=1;
+you=1;
+while(love==you)
+{
+printf("I Love You Mom\n");
+}
+}
