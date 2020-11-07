@@ -1,0 +1,152 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
+{
+    int value_info;
+    struct Node *ptr;
+}*front,*rear,*temp,*front1;
+
+int frontvalue();
+void enq(int data);
+void deq();
+void empty();
+void display();
+void create();
+void queuesize();
+int count = 0;
+void main()
+{
+    int no, ch, e;
+    printf("\n LIST OF CHOICES: \n");
+    printf("\t 1. Enqueue \n");
+    printf("\t 2. Dequeue \n");
+    printf("\t 3. Front \n");
+    printf("\t 4. Empty \n");
+    printf("\t 5. Exit \n");
+    printf("\t 6. Display \n\n");
+    create();
+    while (1)
+    {
+        printf("\n Enter choice : ");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            printf(" Enter data : ");
+            scanf("%d", &no);
+            enq(no);
+            break;
+        case 2:
+            deq();
+            break;
+        case 3:
+            e = frontvalue();
+            if (e != 0)
+                printf("\n Front element : %d \n", e);
+            else
+                printf("There is no front element \n");
+            break;
+        case 4:
+            empty();
+            break;
+        case 5:
+            exit(0);
+        case 6:
+            display();
+            break;
+        default:
+            printf("Invalid choice! \n");
+            break;
+        }
+    }
+}
+
+void create()
+{
+    front = rear = NULL;
+}
+
+void queuesize()
+{
+    printf("\n Size of the queue is %d", count);
+}
+
+void enq(int data)
+{
+    if (rear == NULL)
+    {
+        rear = (struct Node *)malloc(1*sizeof(struct Node));
+        rear->ptr = NULL;
+        rear->value_info = data;
+        front = rear;
+    }
+    else
+    {
+        temp=(struct Node *)malloc(1*sizeof(struct Node));
+        rear->ptr = temp;
+        temp->value_info = data;
+        temp->ptr = NULL;
+
+        rear = temp;
+    }
+    count++;
+}
+
+void display()
+{
+    front1 = front;
+
+    if ((front1 == NULL) && (rear == NULL))
+    {
+        printf("Queue is empty");
+        return;
+    }
+    while (front1 != rear)
+    {
+        printf("%d ", front1->value_info);
+        front1 = front1->ptr;
+    }
+    if (front1 == rear)
+        printf("%d", front1->value_info);
+}
+
+void deq()
+{
+    front1 = front;
+    if (front1 == NULL)
+    {
+        printf("\n Cannot display elements from an empty queue");
+        return;
+    }
+    else
+        if (front1->ptr != NULL)
+        {
+            front1 = front1->ptr;
+            printf("\n Dequeued value is %d", front->value_info);
+            free(front);
+            front = front1;
+        }
+        else
+        {
+            printf("\n Dequeued value is %d", front->value_info);
+            free(front);
+            front = NULL;
+            rear = NULL;
+        }
+        count--;
+}
+int frontvalue()
+{
+    if ((front != NULL) && (rear != NULL))
+        return(front->value_info);
+    else
+        return 0;
+}
+
+void empty()
+{
+     if ((front == NULL) && (rear == NULL))
+        printf("\n Empty queue!");
+    else
+       printf("\n Queue is not empty!");
+}
