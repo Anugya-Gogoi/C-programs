@@ -1,0 +1,21 @@
+#include <stdio.h>
+int fibonacci(int number);
+int main()
+{
+    int terms, counter;
+    printf("Enter number of terms in Fibonacci series: ");
+    scanf("%d", &terms);
+
+    printf("Fibonacci series till %d terms is:\n", terms);
+    for(counter = 0; counter < terms; counter++)
+    {
+        printf("%d ", fibonacci(counter));
+    }
+    return 0;
+}
+
+int fibonacci(int number)
+{
+    if(number < 2)
+       return number;
+    return fibonacci(number - 1) + fibonacci(number - 2);
