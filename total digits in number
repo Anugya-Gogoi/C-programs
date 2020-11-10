@@ -1,0 +1,27 @@
+#include <stdio.h>
+int digits(int num)
+{
+    static int count=0;
+
+    if(num>0)
+    {
+        count++;
+        digits(num/10);
+    }
+    else
+    {
+        return count;
+    }
+}
+int main()
+{
+    int number;
+    int count=0;
+
+    printf("Enter a positive integer:\n ");
+    scanf("%d",&number);
+    count=digits(number);
+    printf("Total digits in the number %d is %d\n",number,count);
+
+    return 0;
+}
