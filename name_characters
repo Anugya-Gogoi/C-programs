@@ -1,0 +1,12 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int len;
+    char name[40];
+    printf("Enter your name:\n ");
+    gets(name);
+    len = strlen(name);
+    printf("Your name %s has %d characters", name, len);
+    return 0;
+}
