@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+	int element;
+	struct node* p;
+};
+
+void print(struct node* ref)
+{
+	struct node *temp = ref;
+	if (ref != NULL)
+	{
+		do
+		{
+			printf("%d", temp->element);
+			temp = temp->p;
+		}
+		while (temp != ref);
+	}
+	printf("\n");
+}
+
+void insert_node(struct node** ref, int new_element)
+{
+	struct node* New = (struct node*)malloc(sizeof(struct node));
+	struct node* temp = *ref;
+	New->element = new_element;
+	New->p = *ref;
+	if (*ref != NULL)
+	{
+		while (temp->p != *ref)
+			temp = temp->p;
+		temp->p = New;
+	}
+	else
+		New->p = New;
+	*ref = New;
+}
+
+int sum_even(struct node* ref)
+{
+	int sum = 0, i;
+	struct node* temp = ref;
+	if (ref != NULL)
+	{
+		do
+		{
+			temp = temp->p;
+			i = temp->element;
+			if (i%2 == 0)
+			{
+				sum = sum + i;
+			}
+		}
+		while (temp != ref);
+	}
+	return sum;
+}
+
+int main()
+{
+	int i, element;
+	printf("Sum of even numbers in the linked list is\n");
+	printf("Enter 10 integers to the linked list:\n");
+	struct node *s = NULL;
+	for(i=0; i<10; i++)
+	{
+		printf("Number %d: ", i+1);
+		scanf("%d", &element);
+		insert_node(&s, element);
+	}
+	printf("Elements in the circular linked list are \n ");
+	print(s);
+	printf("Sum of the even numbers is %d\n", sum_even(s));
+	return 0;
+}
+
+
