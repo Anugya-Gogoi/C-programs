@@ -1,81 +1,92 @@
-#include<stdio.h>
-#include<process.h>
-#include<stdlib.h>
-#define MAX 5
-
-int top=-1,stack[MAX];
-void push();
-void pop();
-void display();
-
-void main()
+#include <stdio.h>
+#define MAXSIZE 5
+struct stack
 {
-	int op;
-
-	while(1)
-	{
-		printf("LIST OF OPERATIONS\n\n");
-		printf("\t1.Push\n \t2.Pop\n \t3.Display\n \t4.Exit \n\n");
-		printf("Choose your operation number:");
-		scanf("%d",&op);
-
-		switch(op)
-		{
-			case 1: push();
-					break;
-			case 2: pop();
-					break;
-			case 3: display();
-					break;
-			case 4: exit(0);
-
-			default: printf("\nWrong opoice!!");
-		}
-	}
+    int stacks[MAXSIZE];
+    int top;
+};
+typedef struct stack STACK;
+STACK a;
+void push(void);
+void  pop(void);
+void display(void);
+void main ()
+{
+    int choice, option=1;
+    a.top = -1;
+    printf ("\nChoose any operation\n");
+    while (option)
+    {
+        printf("\n1. Push\n2. Pop\n3.Display\n4. Exit\n");
+        printf("Enter your choice\n");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            push();
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            exit(0);
+            break;
+        }
+        printf("Do you want to continue(0/1)?\n");
+        scanf("%d", &option);
+    }
 }
-
-void push()
+void push ()
 {
-	int val;
-
-	if(top==MAX-1)
-	{
-		printf("\nStack is full!!");
-	}
-	else
-	{
-		printf("\nEnter element to push:");
-		scanf("%d",&val);
-		top=top+1;
-		stack[top]=val;
-	}
+    int num;
+    if (a.top == (MAXSIZE - 1))
+    {
+        printf ("Stack is Full\n");
+        return;
+    }
+    else
+    {
+        printf ("Enter the element to be pushed\n");
+        scanf ("%d", &num);
+        a.top = a.top + 1;
+        a.stacks[a.top] = num;
+    }
+    return;
 }
-
-void pop()
+void pop ()
 {
-	if(top==-1)
-	{
-		printf("\nStack is empty!!");
-	}
-	else
-	{
-		printf("\nDeleted element is %d",stack[top]);
-		top=top-1;
-	}
+    int num;
+    if (a.top == - 1)
+    {
+        printf ("Stack underflow\n");
+        return (a.top);
+    }
+    else
+    {
+        num = a.stacks[a.top];
+        printf ("Popped element is = %d\n", a.stacks[a.top]);
+        a.top = a.top - 1;
+    }
+    return(num);
 }
-
-void display()
+void display ()
 {
-	int i;
-
-	if(top==-1)
-	{
-		printf("\nStack is empty!!");
-	}
-	else
-	{
-		printf("\nStack is...\n");
-		for(i=top;i>=0;--i)
-			printf("%d\n",stack[i]);
-	}
+    int i;
+    if (a.top == -1)
+    {
+        printf ("Stack underflow\n");
+        return;
+    }
+    else
+    {
+        printf ("\nThe status of the stack is \n");
+        for (i = a.top; i >= 0; i--)
+        {
+            printf ("%d\n", a.stacks[i]);
+        }
+    }
+    printf ("\n");
 }
