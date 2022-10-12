@@ -74,7 +74,7 @@ void insert(int key)
 	else if(array[index].key == key)
         {
 		/*  updating already existing key  */
-		printf("\n Key (%d) already present, hence updating its value \n", key);
+		printf("\n The key (%d) already present, hence updating its value \n", key);
 		array[index].value += 1;
 	}
 	else
