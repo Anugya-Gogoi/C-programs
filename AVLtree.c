@@ -25,7 +25,7 @@ int main()
 
 	do
 	{
-		printf("\n\n1.Create \n2.Delete \n3.Preorder display \n4.Quit ");
+		printf("\n\n1.Create \n2.Delete \n3.Preorder display \n4.Quit the program ");
 		printf("\n\nEnter Your Choice:");
 		scanf("\n%d",&op);
 
